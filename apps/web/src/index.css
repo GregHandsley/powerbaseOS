@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Temporary: basic body styling for acceptance */
+html, body, #root { height: 100%; }
+body { @apply bg-white text-gray-900; }
