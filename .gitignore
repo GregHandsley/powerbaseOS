@@ -1,0 +1,22 @@
+cat > .gitignore <<'EOF'
+# Node / web
+node_modules
+dist
+.pnpm-store
+
+# Python / api/worker
+__pycache__/
+*.py[cod]
+.venv
+.uv/
+.pytest_cache
+
+# Editor / OS
+.DS_Store
+.idea
+.vscode
+
+# Local data & volumes
+data/
+.env
+EOF
