@@ -4,8 +4,15 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
 WORKDIR /app
-# Use uv (already added via lock in repo later; here we just pip install)
-RUN pip install --no-cache-dir uvicorn fastapi
+
+# Install runtime & tooling needed by Sprint 3
+RUN pip install --no-cache-dir \
+    fastapi \
+    uvicorn[standard] \
+    pydantic-settings \
+    sqlalchemy \
+    asyncpg \
+    alembic
 
 # Copy app code
 COPY apps/api /app
