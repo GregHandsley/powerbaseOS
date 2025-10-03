@@ -5,8 +5,16 @@ from alembic import context
 from sqlalchemy import pool
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
+from app.models import __init__ as models_init  
+from app.models.facility import Facility  
+from app.models.side import Side  
+from app.models.rack import Rack  
+from app.models.timeslot import Timeslot  
+from app.models import Base
 
 config = context.config
+
+target_metadata = Base.metadata
 
 # Make fileConfig tolerant of minimal INI files
 if config.config_file_name is not None:
@@ -19,7 +27,7 @@ if config.config_file_name is not None:
 from app.core.settings import get_settings
 settings = get_settings()
 
-target_metadata = None
+# target_metadata is set above with Base.metadata
 
 def _configure_url():
     config.set_main_option("sqlalchemy.url", settings.database_url_async)

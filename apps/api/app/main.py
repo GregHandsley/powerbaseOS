@@ -3,6 +3,8 @@ from fastapi import FastAPI
 from .routes import health
 from .core.logging import setup_logging
 from .core.db import lifespan_db_check
+from app.routes import health
+from app.routes import facilities, sides, racks, timeslots
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -20,3 +22,9 @@ app.include_router(health.router, prefix="/health")
 @app.get("/")
 def root():
     return {"service": "powerbase-api", "status": "up"}
+
+app.include_router(health.router, prefix="/health")
+app.include_router(facilities.router)
+app.include_router(sides.router)
+app.include_router(racks.router)
+app.include_router(timeslots.router)
