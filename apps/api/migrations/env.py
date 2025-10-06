@@ -12,6 +12,8 @@ from app.models.side import Side  # noqa
 from app.models.rack import Rack  # noqa
 from app.models.timeslot import Timeslot  # noqa
 from app.models.user import User, Role, user_roles_table  # noqa
+from app.models.event import Event  # noqa: F401
+from app.models.job import Job  # noqa: F401
 
 target_metadata = Base.metadata
 

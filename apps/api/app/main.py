@@ -6,6 +6,7 @@ from .core.db import lifespan_db_check
 from app.routes import health
 from app.routes import facilities, sides, racks, timeslots
 from app.routes import auth
+from app.routes import events
 
 
 @asynccontextmanager
@@ -31,3 +32,4 @@ app.include_router(sides.router)
 app.include_router(racks.router)
 app.include_router(timeslots.router)
 app.include_router(auth.router)
+app.include_router(events.router)
