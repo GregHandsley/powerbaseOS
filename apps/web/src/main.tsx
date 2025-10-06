@@ -1,33 +1,51 @@
+// apps/web/src/main.tsx
 import React from "react";
+import "./index.css";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./state/queryClient";
 import RootLayout from "./app/layout/RootLayout";
 
-import DashboardPage from "./app/routes/dashboard";
-import BookPage from "./app/routes/book";
-import RacksPage from "./app/routes/racks";
-import KioskPage from "./app/routes/kiosk";
-import AdminPage from "./app/routes/admin";
-import ReportsPage from "./app/routes/reports";
-import SettingsPage from "./app/routes/settings";
+// PAGES
+import Dashboard from "./app/routes/dashboard";
+import Book from "./app/routes/book";
+import Racks from "./app/routes/racks";
+import Kiosk from "./app/routes/kiosk";
+import Admin from "./app/routes/admin";
+import Reports from "./app/routes/reports";
+import Settings from "./app/routes/settings";
 
-import "./index.css";
+// FLOORPLAN EDITOR (new)
+import FloorplanEditor from "./features/floorplan/Editor";
+
+// (optional) a simple error boundary element
+export function RouteError() {
+  return (
+    <div className="p-6">
+      <h1 className="text-xl font-semibold mb-2">Something went wrong</h1>
+      <p className="text-sm text-muted-foreground">
+        This page could not be loaded. Use the sidebar to navigate elsewhere.
+      </p>
+    </div>
+  );
+}
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
+    errorElement: <RouteError />, // optional, nicer UX than the default 💿 screen
     children: [
-      { index: true, element: <DashboardPage /> },
-      { path: "dashboard", element: <DashboardPage /> },
-      { path: "book", element: <BookPage /> },
-      { path: "racks", element: <RacksPage /> },
-      { path: "kiosk", element: <KioskPage /> },
-      { path: "admin", element: <AdminPage /> },
-      { path: "reports", element: <ReportsPage /> },
-      { path: "settings", element: <SettingsPage /> },
+      { index: true, element: <Dashboard /> },
+      { path: "dashboard", element: <Dashboard /> },
+      { path: "book", element: <Book /> },
+      { path: "racks", element: <Racks /> },
+      { path: "kiosk", element: <Kiosk /> },
+      { path: "admin", element: <Admin /> },
+      { path: "admin/floorplan", element: <FloorplanEditor /> }, // ← ADD THIS
+      { path: "reports", element: <Reports /> },
+      { path: "settings", element: <Settings /> },
     ],
   },
 ]);

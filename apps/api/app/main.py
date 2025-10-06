@@ -7,7 +7,8 @@ from app.routes import health
 from app.routes import facilities, sides, racks, timeslots
 from app.routes import auth
 from app.routes import events
-
+from app.routes import floorplans
+from app.routes import kiosk
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -33,3 +34,5 @@ app.include_router(racks.router)
 app.include_router(timeslots.router)
 app.include_router(auth.router)
 app.include_router(events.router)
+app.include_router(floorplans.router)
+app.include_router(kiosk.router)

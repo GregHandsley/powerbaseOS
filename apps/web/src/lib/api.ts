@@ -1,10 +1,17 @@
-const baseURL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+// Use relative paths in dev so Vite proxy handles CORS/preflight.
+// If a full URL is passed, fetch it as-is.
 
-export async function get<T = unknown>(path: string): Promise<T> {
-  const res = await fetch(`${baseURL}${path}`);
-  if (!res.ok) throw new Error(`GET ${path} failed: ${res.status}`);
+export async function api<T = unknown>(path: string, init?: RequestInit): Promise<T> {
+  const isAbsolute = /^https?:\/\//i.test(path);
+  const url = isAbsolute ? path : (path.startsWith("/") ? path : `/${path}`);
+  const res = await fetch(url, {
+    headers: { "content-type": "application/json", ...(init?.headers || {}) },
+    ...init,
+  });
+  if (!res.ok) throw new Error(await res.text());
   return res.json() as Promise<T>;
 }
 
-// Example usage:
-// const health = await get<{status:string}>("/health/live");
+export async function get<T = unknown>(path: string): Promise<T> {
+  return api<T>(path);
+}

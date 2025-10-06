@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { Dumbbell, LayoutDashboard, CalendarCheck, BarChart3, Settings } from "lucide-react";
+import { Map, Dumbbell, LayoutDashboard, CalendarCheck, BarChart3, Settings } from "lucide-react";
 
 const item = "flex items-center gap-2 px-4 py-2 rounded hover:bg-muted";
 const active = "bg-muted";
@@ -16,6 +16,10 @@ export default function Sidebar() {
       </NavLink>
       <NavLink to="/racks" className={({isActive})=>`${item} ${isActive?active:""}`}>
         <Dumbbell className="h-4 w-4" /> Racks
+      </NavLink>
+      <NavLink to="/admin/floorplan" className="sidebar-link">
+        <Map className="h-4 w-4" />
+        <span>Floorplan</span>
       </NavLink>
       <NavLink to="/reports" className={({isActive})=>`${item} ${isActive?active:""}`}>
         <BarChart3 className="h-4 w-4" /> Reports
