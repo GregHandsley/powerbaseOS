@@ -6,15 +6,16 @@ from sqlalchemy import pool
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
 from app.models import __init__ as models_init  
-from app.models.facility import Facility  
-from app.models.side import Side  
-from app.models.rack import Rack  
-from app.models.timeslot import Timeslot  
 from app.models import Base
-
-config = context.config
+from app.models.facility import Facility  # noqa
+from app.models.side import Side  # noqa
+from app.models.rack import Rack  # noqa
+from app.models.timeslot import Timeslot  # noqa
+from app.models.user import User, Role, user_roles_table  # noqa
 
 target_metadata = Base.metadata
+
+config = context.config
 
 # Make fileConfig tolerant of minimal INI files
 if config.config_file_name is not None:

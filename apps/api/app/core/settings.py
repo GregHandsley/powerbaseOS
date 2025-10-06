@@ -18,6 +18,10 @@ class Settings(BaseSettings):
     # Sentry optional (unused here but in .env)
     SENTRY_DSN: str | None = None
 
+    JWT_SECRET: str = Field(default="changeme")
+    JWT_EXPIRES: int = Field(default=3600)  # seconds
+    JWT_ALG: str = Field(default="HS256")
+
     model_config = SettingsConfigDict(env_file="../../.env", env_file_encoding="utf-8", extra="ignore")
 
     @property

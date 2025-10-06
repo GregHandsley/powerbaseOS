@@ -5,6 +5,8 @@ from .core.logging import setup_logging
 from .core.db import lifespan_db_check
 from app.routes import health
 from app.routes import facilities, sides, racks, timeslots
+from app.routes import auth
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -28,3 +30,4 @@ app.include_router(facilities.router)
 app.include_router(sides.router)
 app.include_router(racks.router)
 app.include_router(timeslots.router)
+app.include_router(auth.router)

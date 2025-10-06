@@ -10,9 +10,13 @@ RUN pip install --no-cache-dir \
     fastapi \
     uvicorn[standard] \
     pydantic-settings \
+    email-validator \
     sqlalchemy \
     asyncpg \
-    alembic
+    alembic \
+    passlib[bcrypt] \
+    "bcrypt==3.2.2" \
+    python-jose[cryptography]
 
 # Copy app code
 COPY apps/api /app
